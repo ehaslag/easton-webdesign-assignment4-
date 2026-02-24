@@ -1,145 +1,131 @@
-body{
-padding:2em;
-margin:0;
-font-family:'Montserrat',Arial,Helvetica,sans-serif;
-background:linear-gradient(to right,#eef2ff,#ffffff);
+/* ========================= */
+/* Base Styles (Mobile First) */
+/* ========================= */
+
+body {
+    margin: 0;
+    padding: 2em;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+    background-color: #f4f6f8;
 }
 
-/* Navigation */
-.navigation{
-list-style:none;
-margin:0;
-padding:0;
-display:flex;
-flex-flow:column;
-background:#444;
+h1, h3, h4 {
+    text-align: center;
+    color: #3f4a6b;
 }
 
-.navigation a{
-display:block;
-text-decoration:none;
-text-align:center;
-color:white;
-padding:10px;
-border-top:1px solid #222;
-border-bottom:1px solid #777;
-}
-
-.navigation li:last-of-type a{
-border-bottom:none;
+p {
+    text-align: center;
 }
 
 /* Layout */
-.wrapper{
-display:flex;
-flex-flow:row wrap;
-text-align:center;
+.wrapper {
+    display: flex;
+    flex-direction: column;
 }
 
-.header,.main,.aside,.footer{
-flex:1 100%;
-padding:15px;
-border-radius:8px;
-margin-bottom:10px;
+/* Sections */
+.header, .main, .aside, .footer {
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
 }
 
-.header{background:#ff6b6b;color:white;}
-.main{background:#4dabf7;color:white;}
-.aside{background:#ffd43b;}
-.footer{background:#69db7c;}
+.header { background-color: #8d99ae; color: white; }
+.main   { background-color: #edf2f4; }
+.aside  { background-color: #d9e4dd; }
+.footer { background-color: #c8d5b9; }
 
-h1{
-font-family:'Playfair Display',"Times New Roman",serif;
+/* ========================= */
+/* Navigation                */
+/* ========================= */
+
+.navigation {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+    display: flex;
+    flex-direction: column; /* Vertical on mobile */
 }
 
-/* Image + Word Boxes */
-.image-container{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:10px;
-margin:20px 0;
+.navigation li {
+    margin: 5px 0;
 }
 
-.word-box{
-background:white;
-color:#333;
-padding:20px;
-width:120px;
-border-radius:6px;
+.navigation a {
+    display: block;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #4a4e69;
+    color: white;
+    border-radius: 5px;
 }
 
-img{
-width:100%;
-max-width:300px;
+.navigation a:hover {
+    background-color: #6c757d;
 }
 
-/* -------- MEDIA QUERY 1 -------- */
-@media (min-width:800px){
+/* ========================= */
+/* Image (Centered)          */
+/* ========================= */
 
-.navigation{
-flex-flow:row;
-justify-content:flex-end;
+.main img {
+    width: 150px;
+    display: block;
+    margin: 20px auto; /* Centered by default */
+    border-radius: 10px;
 }
 
-.navigation a{
-border:none;
+/* ================================= */
+/* MEDIA QUERY #1 (700px)           */
+/* Navigation changes direction     */
+/* ================================= */
+
+@media (min-width: 700px) {
+    .navigation {
+        flex-direction: row; /* Becomes horizontal */
+        justify-content: center;
+        gap: 15px;
+    }
 }
 
-.navigation a:hover{
-background:black;
+/* ================================= */
+/* MEDIA QUERY #2 (900px)           */
+/* Sidebar shifts / Layout changes  */
+/* ================================= */
+
+@media (min-width: 900px) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 300px; /* Main left, Sidebar right */
+        gap: 20px;
+    }
+
+    .header, .navigation, .footer {
+        grid-column: span 2;
+    }
+
+    .main img {
+        width: 180px;
+        margin: 20px auto; /* Keeps image centered in the "Main" column */
+    }
 }
 
-.first{
-margin-right:auto;
-}
+/* ================================= */
+/* MEDIA QUERY #3 (1100px)          */
+/* Growth and Refinement            */
+/* ================================= */
 
-.image-container{
-flex-direction:row;
-justify-content:center;
-}
+@media (min-width: 1100px) {
+    .wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
 
-img{
-width:50%;
-height:200px;
-margin:0 10px;
-}
-
-}
-
-/* -------- MEDIA QUERY 2 -------- */
-@media (min-width:1000px){
-
-.aside{
-flex:1;
-order:1;
-}
-
-.main{
-flex:3;
-order:2;
-text-align:left;
-}
-
-.footer{
-order:3;
-}
-
-}
-
-/* -------- MEDIA QUERY 3 -------- */
-@media (min-width:1200px){
-
-body{
-background:linear-gradient(to right,#dbeafe,#f8f9fa);
-}
-
-.word-box{
-width:180px;
-}
-
-.header{
-font-size:1.4em;
-}
-
+    .main img {
+        width: 240px; /* Image grows but stays centered */
+        margin: 20px auto;
+    }
 }
